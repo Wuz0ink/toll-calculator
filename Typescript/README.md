@@ -20,7 +20,10 @@ I tried to keep the project small and functional but still forward-thinking.
 
 **Holidays** the hardcoded 2013 list looked like a bug so I replaced it with `date-holidays`. No need to reinvent the wheel.
 
+**Timezone** In production I would use a set timezone for where the application is used.
+
 ## Bug fixes from original
 
 - Price intervals had gaps, e.g. 09:15 returned 0 SEK instead of 8 SEK
 - 60-minute window never reset, so only the first window worked correctly
+- Hardcoded 2013 holidays and July

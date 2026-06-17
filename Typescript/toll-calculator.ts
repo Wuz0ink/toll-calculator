@@ -27,8 +27,12 @@ function isWeekend(date: Date): boolean {
     return date.getDay() === 0 || date.getDay() === 6
 }
 
+function isJuly(date: Date): boolean {
+    return date.getMonth() === 6
+}
+
 function isTollFree(date: Date): boolean {
-    return isWeekend(date) || hd.isHoliday(date) !== false
+    return isJuly(date) || isWeekend(date) || hd.isHoliday(date) !== false
 }
 
 function getPrice(date: Date): number {
@@ -47,11 +51,11 @@ export function calculateToll(vehicle: Vehicle, dates: Date[]): number {
     for (const d of sorted) {
         if (isTollFree(d)) continue
         const t = d.getTime()
-        if (t - windowStart >= MS_PER_HOUR) {
+        if (t - windowStart >= MS_PER_HOUR) { // start new window?
             total += windowMax
             windowStart = t
             windowMax = getPrice(d)
-        } else {
+        } else { // same window
             windowMax = Math.max(windowMax, getPrice(d))
         }
     }

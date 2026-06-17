@@ -48,6 +48,11 @@ describe('calculateToll', () => {
         expect(result).toBe(26)
     })
 
+    it('two passages at in July -> 0 SEK', () => {
+        const result = calculateToll('Car', [new Date('2026-07-12 07:00'), new Date('2026-07-12 08:59')])
+        expect(result).toBe(0)
+    })
+
     it('daily max -> 60 SEK', () => {
         const result = calculateToll('Car', [new Date('2026-06-12 07:00'),
         new Date('2026-06-12 08:59'),
